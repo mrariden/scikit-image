@@ -485,6 +485,19 @@ class RegionProperties:
         return sqrt(np.max(distances))
 
     @property
+    def feret_diameter_min(self):
+        identity_convex_hull = np.pad(self.image_convex,
+                                      2, mode='constant', constant_values=0)
+        if self._ndim == 2:
+            coordinates = np.vstack(find_contours(identity_convex_hull, .5,
+                                                  fully_connected='high'))
+        elif self._ndim == 3:
+            coordinates, _, _, _ = marching_cubes(identity_convex_hull,
+                                                  level=.5)
+        distances = pdist(coordinates * self._spacing, 'sqeuclidean')
+        return sqrt(np.min(distances))
+
+    @property
     def area_filled(self):
         return np.sum(self.image_filled) * self._pixel_area
 
