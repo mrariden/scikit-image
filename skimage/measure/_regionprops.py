@@ -42,6 +42,7 @@ PROPS = {
     # 'Extrema',
     'FeretDiameter': 'feret_diameter_max',
     'FeretDiameterMax': 'feret_diameter_max',
+    'FeretDiameterMin': 'feret_diameter_min',
     'FilledArea': 'area_filled',
     'filled_area': 'area_filled',
     'FilledImage': 'image_filled',
